@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sai Veerabhadra Electronics | Premium Home Appliances, Hyderabad</title>
+<meta name="description" content="Sai Veerabhadra Electronics - Hyderabad's trusted showroom for TVs, refrigerators, washing machines, air conditioners & kitchen appliances from top brands at the best prices.">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/css/bootstrap.min.css">
+<!-- AOS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css">
+<!-- Swiper -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css">
+
+<style>
+:root{
+  --primary:#0D47A1;
+  --primary-light:#1863D6;
+  --accent:#FF6F00;
+  --accent-light:#FF9142;
+  --navy:#071A34;
+  --navy-2:#0A2242;
+  --gray-card:#F3F5F8;
+  --white:#FFFFFF;
+  --ink:#0B1B33;
+  --muted:#5C6B82;
+  --current:#29B6F6;
+  --radius-lg:26px;
+  --radius-md:18px;
+  --radius-sm:12px;
+  --shadow-soft:0 20px 60px -20px rgba(13,71,161,0.25);
+  --shadow-card:0 10px 30px -12px rgba(11,27,51,0.15);
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',sans-serif;
+  color:var(--ink);
+  background:var(--white);
+  margin:0;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4,.display-font{
+  font-family:'Poppins',sans-serif;
+}
+a{text-decoration:none;}
+::selection{background:var(--accent);color:#fff;}
+
+/* Scrollbar signature - "current" line */
+::-webkit-scrollbar{width:8px;}
+::-webkit-scrollbar-track{background:var(--gray-card);}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--primary),var(--current));border-radius:10px;}
+
+/* ================= NAVBAR ================= */
+.navbar-custom{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:16px 0;
+  transition:all .35s ease;
+  background:rgba(255,255,255,0.0);
+}
+.navbar-custom.scrolled{
+  background:rgba(255,255,255,0.85);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  box-shadow:0 8px 30px -10px rgba(0,0,0,0.12);
+  padding:10px 0;
+}
+.brand-logo{
+  font-family:'Poppins',sans-serif;
+  font-weight:700;
+  font-size:1.35rem;
+  color:var(--navy);
+  display:flex;align-items:center;gap:10px;
+  letter-spacing:.2px;
+}
+.brand-name-hl{
+  color:#D50000;
+  font-size:1.55em;
+  font-weight:800;
+}
+.brand-logo .logo-mark{
+  width:42px;height:42px;border-radius:12px;
+  background:linear-gradient(135deg,var(--primary),var(--current));
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:1.1rem;
+  box-shadow:0 8px 18px -6px rgba(13,71,161,0.55);
+}
+.navbar-custom .nav-link{
+  font-weight:500;
+  color:var(--ink)!important;
+  margin:0 6px;
+  position:relative;
+  padding:8px 4px!important;
+}
+.navbar-custom .nav-link::after{
+  content:"";position:absolute;left:4px;right:4px;bottom:2px;height:2px;
+  background:var(--accent);transform:scaleX(0);transform-origin:right;
+  transition:transform .3s ease;
+}
+.navbar-custom .nav-link:hover::after{transform:scaleX(1);transform-origin:left;}
+.btn-nav-cta{
+  background:var(--accent);color:#fff!important;
+  padding:10px 22px;border-radius:30px;font-weight:600;
+  box-shadow:0 10px 25px -8px rgba(255,111,0,0.6);
+  transition:.3s ease;
+}
+.btn-nav-cta:hover{background:var(--accent-light);color:#fff!important;transform:translateY(-2px);}
+
+/* ================= HERO ================= */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;align-items:center;
+  background:
+    linear-gradient(180deg,rgba(4,14,30,0.55) 0%, rgba(4,14,30,0.72) 55%, rgba(4,14,30,0.92) 100%),center/cover fixed;
+  color:#fff;
+  overflow:hidden;
+}
+/* .hero {
+            background-image: url("{{ url_for('static', filename='saiveerabackground.png') }}"),background-repeat: no-repeat;
+            } */
+.hero {
+    background-image: url("{{ url_for('static', filename='saiveerabackground.png') }}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 15% 20%, rgba(41,182,246,0.18), transparent 40%),
+             radial-gradient(circle at 85% 80%, rgba(255,111,0,0.14), transparent 45%);
+  pointer-events:none;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,0.1);
+  border:1px solid rgba(255,255,255,0.25);
+  backdrop-filter:blur(10px);
+  padding:8px 18px;border-radius:40px;
+  font-size:.85rem;font-weight:500;letter-spacing:.5px;
+  margin-bottom:22px;
+}
+.hero-eyebrow .dot{
+  width:8px;height:8px;border-radius:50%;background:var(--current);
+  box-shadow:0 0 0 0 rgba(41,182,246,0.7);
+  animation:pulse-dot 1.8s infinite;
+}
+@keyframes pulse-dot{
+  0%{box-shadow:0 0 0 0 rgba(41,182,246,0.6);}
+  70%{box-shadow:0 0 0 10px rgba(41,182,246,0);}
+  100%{box-shadow:0 0 0 0 rgba(41,182,246,0);}
+}
+.hero h1{
+  font-size:clamp(2.4rem,5.4vw,4.4rem);
+  font-weight:800;
+  line-height:1.08;
+  max-width:900px;
+  text-shadow:0 10px 40px rgba(0,0,0,0.35);
+}
+.hero h1 span{color:var(--accent-light);}
+.hero p.lead{
+  font-size:1.2rem;
+  max-width:640px;
+  color:rgba(255,255,255,0.85);
+  margin-top:20px;
+  font-weight:400;
+}
+.hero .rating-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.2);
+  padding:8px 16px;border-radius:30px;margin-top:24px;
+  font-size:.9rem;
+}
+.hero .rating-pill i{color:#FFC107;}
+.hero-btns{margin-top:38px;display:flex;gap:18px;flex-wrap:wrap;}
+.btn-shop{
+  background:var(--accent);
+  color:#fff;padding:16px 36px;border-radius:50px;font-weight:600;
+  position:relative;overflow:hidden;
+  box-shadow:0 15px 35px -10px rgba(255,111,0,0.7);
+  transition:.3s ease;
+}
+.btn-shop:hover{transform:translateY(-3px);color:#fff;box-shadow:0 20px 45px -10px rgba(255,111,0,0.8);}
+.btn-outline-hero{
+  border:1.5px solid rgba(255,255,255,0.55);
+  color:#fff;padding:16px 34px;border-radius:50px;font-weight:600;
+  background:rgba(255,255,255,0.06);
+  backdrop-filter:blur(6px);
+  transition:.3s ease;
+}
+.btn-outline-hero:hover{background:rgba(255,255,255,0.18);color:#fff;transform:translateY(-3px);}
+
+/* ripple */
+.ripple{position:relative;overflow:hidden;}
+.ripple span.ripple-el{
+  position:absolute;border-radius:50%;
+  background:rgba(255,255,255,0.5);
+  transform:scale(0);
+  animation:ripple-anim .6s linear;
+  pointer-events:none;
+}
+@keyframes ripple-anim{to{transform:scale(3);opacity:0;}}
+
+/* scroll cue */
+.scroll-cue{
+  position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:rgba(255,255,255,0.7);font-size:.75rem;letter-spacing:2px;text-transform:uppercase;
+}
+.scroll-cue .stick{
+  width:2px;height:34px;border-radius:2px;
+  background:linear-gradient(var(--current),transparent);
+  animation:scroll-move 1.8s infinite;
+}
+@keyframes scroll-move{
+  0%{opacity:0;transform:translateY(-6px);}
+  50%{opacity:1;}
+  100%{opacity:0;transform:translateY(14px);}
+}
+
+/* ============ CIRCUIT SIGNATURE DIVIDER ============ */
+.circuit-divider{
+  position:relative;height:90px;background:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.circuit-divider svg{width:100%;max-width:1100px;height:100%;}
+.circuit-divider .trace{
+  fill:none;stroke:var(--primary);stroke-width:2;stroke-dasharray:6 6;opacity:.35;
+}
+.circuit-divider .node{fill:var(--accent);}
+.circuit-divider .current{
+  fill:var(--current);
+  filter:drop-shadow(0 0 6px var(--current));
+  offset-path:path('M0,45 L180,45 L210,20 L340,20 L370,45 L520,45 L550,70 L700,70 L730,45 L900,45 L1100,45');
+  animation:travel 5s linear infinite;
+}
+@keyframes travel{
+  0%{offset-distance:0%;}
+  100%{offset-distance:100%;}
+}
+
+/* ================= SECTION GENERIC ================= */
+section{padding:100px 0;position:relative;}
+.section-tag{
+  display:inline-block;color:var(--accent);font-weight:600;
+  letter-spacing:2px;text-transform:uppercase;font-size:.8rem;margin-bottom:14px;
+}
+.section-title{
+  font-size:clamp(1.8rem,3.4vw,2.6rem);
+  font-weight:700;color:var(--navy);
+  margin-bottom:16px;
+}
+.section-sub{color:var(--muted);font-size:1.05rem;max-width:620px;}
+.bg-navy{background:var(--navy);color:#fff;}
+.bg-navy .section-title{color:#fff;}
+.bg-navy .section-sub{color:rgba(255,255,255,0.65);}
+.bg-soft{background:var(--gray-card);}
+
+/* ============ BRANDS ============ */
+.brand-slide{
+  background:#fff;border-radius:var(--radius-md);
+  display:flex;align-items:center;justify-content:center;
+  padding:22px 10px;height:90px;
+  box-shadow:var(--shadow-card);
+  font-family:'Poppins',sans-serif;font-weight:600;color:var(--navy);
+  font-size:1.05rem;letter-spacing:.5px;
+  transition:.3s ease;border:1px solid rgba(13,71,161,0.06);
+}
+.brand-slide:hover{transform:translateY(-6px);box-shadow:var(--shadow-soft);color:var(--primary);}
+
+/* ============ CATEGORY CARDS ============ */
+.cat-card{
+  background:#fff;
+  border-radius:var(--radius-md);
+  text-align:center;
+  box-shadow:var(--shadow-card);
+  border:1px solid rgba(13,71,161,0.05);
+  height:100%;
+  transition:.4s cubic-bezier(.2,.8,.2,1);
+  position:relative;overflow:hidden;
+}
+.cat-card:hover{transform:translateY(-10px);box-shadow:var(--shadow-soft);}
+.cat-img-wrap{
+  position:relative;height:150px;overflow:hidden;
+  background:linear-gradient(135deg,#eef2f8,#e3e9f3);
+}
+.cat-img-wrap img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:.5s ease;
+}
+.cat-card:hover .cat-img-wrap img{transform:scale(1.1);}
+.cat-img-wrap::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(7,26,52,0) 55%,rgba(7,26,52,0.35) 100%);
+}
+.cat-icon{
+  width:52px;height:52px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  position:absolute;left:16px;bottom:-22px;z-index:2;
+  background:linear-gradient(135deg,var(--primary),var(--current));
+  color:#fff;font-size:1.2rem;
+  box-shadow:0 12px 26px -8px rgba(13,71,161,0.5);
+  border:3px solid #fff;
+  transition:.4s ease;
+}
+.cat-card:hover .cat-icon{transform:rotate(-8deg) scale(1.08);}
+.cat-body{padding:90px 90px 30px;}
+.cat-card h5{font-weight:600;margin-bottom:6px;position:relative;z-index:1;}
+.cat-card p{color:var(--muted);font-size:.80rem;margin:0;position:relative;z-index:1;}
+
+/* ============ OFFERS ============ */
+.offer-card{
+  border-radius:var(--radius-md);
+  padding:32px 26px;
+  color:#fff;
+  height:100%;
+  position:relative;overflow:hidden;
+  box-shadow:var(--shadow-soft);
+}
+.offer-card h4{font-weight:700;margin-bottom:8px;}
+.offer-card p{opacity:.85;font-size:.92rem;margin-bottom:0;}
+.offer-card .badge-float{
+  position:absolute;top:16px;right:16px;
+  background:rgba(255,255,255,0.18);
+  border:1px solid rgba(255,255,255,0.3);
+  padding:6px 14px;border-radius:30px;font-size:.75rem;font-weight:600;
+  animation:float-badge 3s ease-in-out infinite;
+}
+@keyframes float-badge{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-6px);}
+}
+.offer-1{background:linear-gradient(135deg,#0D47A1,#1863D6);}
+.offer-2{background:linear-gradient(135deg,#FF6F00,#FF9142);}
+.offer-3{background:linear-gradient(135deg,#071A34,#123A6B);}
+.offer-4{background:linear-gradient(135deg,#1863D6,#29B6F6);}
+.offer-5{background:linear-gradient(135deg,#FF9142,#FF6F00);}
+.offer-6{background:linear-gradient(135deg,#123A6B,#071A34);}
+.offer-card i.bg-icon{
+  position:absolute;bottom:-20px;right:-10px;font-size:6rem;opacity:.12;
+}
+
+/* ============ WHY CHOOSE US ============ */
+.why-card{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:var(--radius-md);
+  padding:30px 22px;text-align:center;height:100%;
+  backdrop-filter:blur(6px);
+  transition:.35s ease;
+}
+.why-card:hover{background:rgba(255,255,255,0.09);transform:translateY(-8px);}
+.why-card i{font-size:1.8rem;color:var(--current);margin-bottom:16px;}
+.why-card h6{font-weight:600;margin-bottom:8px;color:#fff;}
+.why-card p{color:rgba(255,255,255,0.6);font-size:.85rem;margin:0;}
+
+/* ============ TESTIMONIALS ============ */
+.review-card{
+  background:rgba(255,255,255,0.65);
+  border:1px solid rgba(255,255,255,0.6);
+  backdrop-filter:blur(14px);
+  border-radius:var(--radius-md);
+  padding:30px;height:100%;
+  box-shadow:var(--shadow-card);
+}
+.review-card .stars i{color:#FFC107;font-size:.9rem;}
+.review-card p.txt{color:var(--ink);font-size:.95rem;margin:16px 0;min-height:90px;}
+.reviewer{display:flex;align-items:center;gap:12px;}
+.reviewer img{width:46px;height:46px;border-radius:50%;object-fit:cover;}
+.reviewer h6{margin:0;font-weight:600;font-size:.92rem;}
+.reviewer span{font-size:.78rem;color:var(--muted);}
+.rating-hero-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  background:#fff;padding:10px 20px;border-radius:40px;
+  box-shadow:var(--shadow-card);margin-bottom:30px;font-weight:600;
+}
+
+/* ============ ABOUT ============ */
+.about-img-wrap{position:relative;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-soft);}
+.about-img-wrap img{width:100%;display:block;transition:.6s ease;}
+.about-img-wrap:hover img{transform:scale(1.05);}
+.about-stat{
+  position:absolute;bottom:-1px;left:-1px;
+  background:var(--primary);color:#fff;
+  padding:18px 26px;border-radius:0 var(--radius-md) 0 0;
+}
+.about-stat h3{margin:0;font-weight:700;}
+.about-stat span{font-size:.78rem;opacity:.85;}
+
+/* ============ MAP / CONTACT ============ */
+.map-wrap{border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-soft);height:100%;min-height:420px;}
+.map-wrap iframe{width:100%;height:100%;min-height:420px;border:0;filter:grayscale(.15);}
+.contact-card{
+  background:#fff;border-radius:var(--radius-md);
+  box-shadow:var(--shadow-card);padding:22px 24px;
+  display:flex;align-items:flex-start;gap:16px;margin-bottom:18px;
+  border:1px solid rgba(13,71,161,0.06);
+}
+.contact-card i{
+  width:48px;height:48px;border-radius:14px;flex:0 0 48px;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--primary),var(--current));
+  color:#fff;font-size:1.1rem;
+}
+.contact-card h6{font-weight:600;margin-bottom:4px;}
+.contact-card p{margin:0;color:var(--muted);font-size:.92rem;}
+.form-glass{
+  background:#fff;border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-soft);padding:40px;
+  border:1px solid rgba(13,71,161,0.06);
+}
+.form-control{
+  border-radius:12px;padding:14px 16px;border:1.5px solid #E4E8EF;
+  font-size:.95rem;
+}
+.form-control:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(13,71,161,0.1);}
+.btn-submit{
+  background:var(--primary);color:#fff;padding:14px 36px;border-radius:50px;
+  font-weight:600;border:none;transition:.3s ease;width:100%;
+}
+.btn-submit:hover{background:var(--primary-light);transform:translateY(-2px);}
+
+/* ============ FOOTER ============ */
+footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:70px 0 0;}
+footer h6{color:#fff;font-weight:600;margin-bottom:20px;letter-spacing:.5px;}
+footer a{color:rgba(255,255,255,0.6);display:block;margin-bottom:10px;font-size:.92rem;transition:.25s ease;}
+footer a:hover{color:var(--accent-light);transform:translateX(3px);}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,0.08);
+  margin-top:50px;padding:22px 0;text-align:center;font-size:.85rem;
+}
+.social-icon{
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(255,255,255,0.08);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;margin-right:10px;transition:.3s ease;
+}
+.social-icon:hover{background:var(--accent);transform:translateY(-3px);}
+
+/* floating call button (mobile) */
+.float-call{
+  position:fixed;bottom:24px;right:24px;z-index:999;
+  width:60px;height:60px;border-radius:50%;
+  background:var(--accent);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:1.4rem;
+  box-shadow:0 15px 35px -8px rgba(255,111,0,0.7);
+  animation:float-call-pulse 2.4s infinite;
+}
+@keyframes float-call-pulse{
+  0%{box-shadow:0 0 0 0 rgba(255,111,0,0.5);}
+  70%{box-shadow:0 0 0 16px rgba(255,111,0,0);}
+  100%{box-shadow:0 0 0 0 rgba(255,111,0,0);}
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;}
+}
+
+@media (max-width:768px){
+  section{padding:70px 0;}
+  .hero{background-attachment:scroll;}
+  .about-stat{position:static;border-radius:var(--radius-md);margin-top:14px;display:inline-block;}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar navbar-expand-lg navbar-custom" id="mainNav">
+  <div class="container">
+    <a class="brand-logo" href="#home">
+      <span class="logo-mark"><i class="fa-solid fa-bolt"></i></span>
+      <span class="brand-name-hl">Sai Veerabhadra</span> <span style="color:var(--primary)">Electronics</span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <i class="fa-solid fa-bars fs-3"></i>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav align-items-lg-center gap-lg-2">
+        <li class="nav-item"><a class="nav-link" href="#categories">Categories</a></li>
+        <li class="nav-item"><a class="nav-link" href="#offers">Offers</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#reviews">Reviews</a></li>
+        <li class="nav-item"><a class="nav-link" href="#location">Location</a></li>
+        <li class="nav-item ms-lg-2"><a class="btn-nav-cta ripple" href="#contact">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="home">
+  <div class="container">
+    <div data-aos="fade-up" data-aos-duration="900">
+      <span class="hero-eyebrow"><span class="dot"></span> Hyderabad's Premium Appliance Showroom</span>
+    </div>
+    <h1 data-aos="fade-up" data-aos-delay="100">Your Trusted Destination for<br><span>Premium Home Appliances</span></h1>
+    <p class="lead" data-aos="fade-up" data-aos-delay="200">Best deals on TVs, refrigerators, washing machines, air conditioners, kitchen appliances, and more — genuine brands, honest prices.</p>
+    <div data-aos="fade-up" data-aos-delay="300">
+      <span class="rating-pill"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> &nbsp;4.2/5 Google Rating</span>
+    </div>
+    <div class="hero-btns" data-aos="fade-up" data-aos-delay="400">
+      <a href="#categories" class="btn-shop ripple">Shop Now <i class="fa-solid fa-arrow-right ms-2"></i></a>
+      <a href="#contact" class="btn-outline-hero ripple">Contact Us</a>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>Scroll</span><span class="stick"></span></div>
+</section>
+
+<!-- circuit signature divider -->
+<div class="circuit-divider">
+  <svg viewBox="0 0 1100 90" preserveAspectRatio="xMidYMid meet">
+    <path class="trace" d="M0,45 L180,45 L210,20 L340,20 L370,45 L520,45 L550,70 L700,70 L730,45 L900,45 L1100,45"/>
+    <circle class="node" cx="180" cy="45" r="4"/>
+    <circle class="node" cx="370" cy="45" r="4"/>
+    <circle class="node" cx="550" cy="70" r="4"/>
+    <circle class="node" cx="730" cy="45" r="4"/>
+    <circle class="current" r="5"/>
+  </svg>
+</div>
+
+<!-- ================= FEATURED BRANDS ================= -->
+<section class="pt-0">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="section-tag">Authorized Dealers</span>
+      <h2 class="section-title">Featured Brands</h2>
+      <p class="section-sub mx-auto">We stock genuine products from the world's most trusted electronics & appliance brands.</p>
+    </div>
+    <div class="swiper brandSwiper" data-aos="fade-up" data-aos-delay="100">
+      <div class="swiper-wrapper align-items-center">
+        <div class="swiper-slide"><div class="brand-slide">Samsung</div></div>
+        <div class="swiper-slide"><div class="brand-slide">LG</div></div>
+        <div class="swiper-slide"><div class="brand-slide">Sony</div></div>
+        <div class="swiper-slide"><div class="brand-slide">Haier</div></div>
+        <div class="swiper-slide"><div class="brand-slide">Whirlpool</div></div>
+        <div class="swiper-slide"><div class="brand-slide">Godrej</div></div>
+        <div class="swiper-slide"><div class="brand-slide">Panasonic</div></div>
+        <div class="swiper-slide"><div class="brand-slide">Voltas</div></div>
+        <div class="swiper-slide"><div class="brand-slide">Blue Star</div></div>
+        <div class="swiper-slide"><div class="brand-slide">IFB</div></div>
+        <div class="swiper-slide"><div class="brand-slide">Bosch</div></div>
+        <div class="swiper-slide"><div class="brand-slide">Lloyd</div></div>
+        <div class="swiper-slide"><div class="brand-slide">Philips</div></div>
+        <div class="swiper-slide"><div class="brand-slide">Prestige</div></div>
+        <div class="swiper-slide"><div class="brand-slide">Bajaj</div></div>
+        <div class="swiper-slide"><div class="brand-slide">Havells</div></div>
+        <div class="swiper-slide"><div class="brand-slide">Crompton</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CATEGORIES ================= -->
+<section class="bg-soft" id="categories">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="section-tag">Shop By Category</span>
+      <h2 class="section-title">Everything For A Smarter Home</h2>
+      <p class="section-sub mx-auto">From entertainment to kitchen essentials — explore our complete appliance range.</p>
+    </div>
+    <div class="row g-4">
+      <!-- category items -->
+      <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up"><div class="cat-card"><div class="cat-img-wrap"><img src="https://loremflickr.com/400/300/television,smarttv" alt="Smart TVs" loading="lazy"><div class="cat-icon"><i class="fa-solid fa-tv"></i></div></div><div class="cat-body"><h5>Smart TVs</h5><p>4K, QLED & OLED</p></div></div></div>
+      <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50"><div class="cat-card"><div class="cat-img-wrap"><img src="{{ url_for('static', filename='ref.png') }}"alt="Refrigerators" loading="lazy"><div class="cat-icon"><i class="fa-solid fa-snowflake"></i></div></div><div class="cat-body"><h5>Refrigerators</h5><p>Single & double door</p></div></div></div>
+      <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100"><div class="cat-card"><div class="cat-img-wrap"><img src="https://loremflickr.com/400/300/washingmachine" alt="Washing Machines" loading="lazy"><div class="cat-icon"><i class="fa-solid fa-shirt"></i></div></div><div class="cat-body"><h5>Washing Machines</h5><p>Front & top load</p></div></div></div>
+      <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150"><div class="cat-card"><div class="cat-img-wrap"><img src="https://loremflickr.com/400/300/airconditioner" alt="Air Conditioners" loading="lazy"><div class="cat-icon"><i class="fa-solid fa-wind"></i></div></div><div class="cat-body"><h5>Air Conditioners</h5><p>Split & window ACs</p></div></div></div>
+      <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up"><div class="cat-card"><div class="cat-img-wrap"><img src="https://loremflickr.com/400/300/waterpurifier" alt="Water Purifiers" loading="lazy"><div class="cat-icon"><i class="fa-solid fa-droplet"></i></div></div><div class="cat-body"><h5>Water Purifiers</h5><p>RO, UV & UF</p></div></div></div>
+      <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50"><div class="cat-card"><div class="cat-img-wrap"><img src="https://loremflickr.com/400/300/kitchenappliances" alt="Kitchen Appliances" loading="lazy"><div class="cat-icon"><i class="fa-solid fa-kitchen-set"></i></div></div><div class="cat-body"><h5>Kitchen Appliances</h5><p>Everyday essentials</p></div></div></div>
+      <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100"><div class="cat-card"><div class="cat-img-wrap"><img src="https://loremflickr.com/400/300/mixergrinder,blender" alt="Mixer Grinders" loading="lazy"><div class="cat-icon"><i class="fa-solid fa-blender"></i></div></div><div class="cat-body"><h5>Mixer Grinders</h5><p>Powerful motors</p></div></div></div>
+      <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150"><div class="cat-card"><div class="cat-img-wrap"><img src="https://loremflickr.com/400/300/microwaveoven" alt="Microwave Ovens" loading="lazy"><div class="cat-icon"><i class="fa-solid fa-satellite-dish"></i></div></div><div class="cat-body"><h5>Microwave Ovens</h5><p>Grill & convection</p></div></div></div>
+      <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up"><div class="cat-card"><div class="cat-img-wrap"><img src="https://loremflickr.com/400/300/waterheater,geyser" alt="Geysers" loading="lazy"><div class="cat-icon"><i class="fa-solid fa-fire-flame-simple"></i></div></div><div class="cat-body"><h5>Geysers</h5><p>Instant & storage</p></div></div></div>
+      <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50"><div class="cat-card"><div class="cat-img-wrap"><img src="https://loremflickr.com/400/300/ceilingfan" alt="Fans" loading="lazy"><div class="cat-icon"><i class="fa-solid fa-fan"></i></div></div><div class="cat-body"><h5>Fans</h5><p>Ceiling & pedestal</p></div></div></div>
+      <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100"><div class="cat-card"><div class="cat-img-wrap"><img src="https://loremflickr.com/400/300/aircooler" alt="Coolers" loading="lazy"><div class="cat-icon"><i class="fa-solid fa-water"></i></div></div><div class="cat-body"><h5>Coolers</h5><p>Desert & personal</p></div></div></div>
+      <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150"><div class="cat-card"><div class="cat-img-wrap"><img src="https://loremflickr.com/400/300/inductioncooktop,stove" alt="Induction Cooktops" loading="lazy"><div class="cat-icon"><i class="fa-solid fa-fire-burner"></i></div></div><div class="cat-body"><h5>Induction Cooktops</h5><p>Energy efficient</p></div></div></div>
+      <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up"><div class="cat-card"><div class="cat-img-wrap"><img src="https://loremflickr.com/400/300/speaker,soundsystem" alt="Home Audio Systems" loading="lazy"><div class="cat-icon"><i class="fa-solid fa-music"></i></div></div><div class="cat-body"><h5>Home Audio</h5><p>Soundbars & speakers</p></div></div></div>
+      <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50"><div class="cat-card"><div class="cat-img-wrap"><img src="https://loremflickr.com/400/300/cables,electronics" alt="Accessories" loading="lazy"><div class="cat-icon"><i class="fa-solid fa-plug"></i></div></div><div class="cat-body"><h5>Accessories</h5><p>Cables, mounts & more</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SPECIAL OFFERS ================= -->
+<section id="offers">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="section-tag">Limited Time</span>
+      <h2 class="section-title">Special Offers</h2>
+      <p class="section-sub mx-auto">Unbeatable deals designed to make premium appliances more affordable.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4" data-aos="fade-up"><div class="offer-card offer-1"><span class="badge-float">Hot Deal</span><i class="fa-solid fa-tag bg-icon"></i><h4>Up to 50% OFF</h4><p>On select TVs, refrigerators & washing machines this season.</p></div></div>
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="80"><div class="offer-card offer-2"><span class="badge-float">Easy EMI</span><i class="fa-solid fa-credit-card bg-icon"></i><h4>No Cost EMI</h4><p>Bring home your favourite appliance with zero extra interest.</p></div></div>
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="160"><div class="offer-card offer-3"><span class="badge-float">Trade In</span><i class="fa-solid fa-arrow-right-arrow-left bg-icon"></i><h4>Exchange Offers</h4><p>Exchange your old appliance for instant value on your new one.</p></div></div>
+      <div class="col-md-6 col-lg-4" data-aos="fade-up"><div class="offer-card offer-4"><span class="badge-float">On Us</span><i class="fa-solid fa-truck-fast bg-icon"></i><h4>Free Delivery</h4><p>Free doorstep delivery across Hyderabad on every purchase.</p></div></div>
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="80"><div class="offer-card offer-5"><span class="badge-float">Seasonal</span><i class="fa-solid fa-gifts bg-icon"></i><h4>Festival Discounts</h4><p>Extra festive savings on top brands, all season long.</p></div></div>
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="160"><div class="offer-card offer-6"><span class="badge-float">Bonus</span><i class="fa-solid fa-wallet bg-icon"></i><h4>Cashback Offers</h4><p>Get cashback on select bank cards and digital payments.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY CHOOSE US ================= -->
+<section class="bg-navy">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="section-tag">Our Promise</span>
+      <h2 class="section-title">Why Choose Us</h2>
+      <p class="section-sub mx-auto">Two things earn trust in this business: genuine products and honest service. We built our showroom around both.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-6 col-md-3" data-aos="zoom-in"><div class="why-card"><i class="fa-solid fa-certificate"></i><h6>Genuine Products</h6><p>100% authentic, brand-warranted</p></div></div>
+      <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="60"><div class="why-card"><i class="fa-solid fa-indian-rupee-sign"></i><h6>Best Prices</h6><p>Competitive showroom pricing</p></div></div>
+      <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="120"><div class="why-card"><i class="fa-solid fa-calendar-check"></i><h6>EMI Available</h6><p>Flexible monthly plans</p></div></div>
+      <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="180"><div class="why-card"><i class="fa-solid fa-truck"></i><h6>Free Delivery</h6><p>Doorstep, on schedule</p></div></div>
+      <div class="col-6 col-md-3" data-aos="zoom-in"><div class="why-card"><i class="fa-solid fa-screwdriver-wrench"></i><h6>Expert Installation</h6><p>Certified technicians</p></div></div>
+      <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="60"><div class="why-card"><i class="fa-solid fa-shield-halved"></i><h6>Warranty Support</h6><p>Full manufacturer backing</p></div></div>
+      <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="120"><div class="why-card"><i class="fa-solid fa-store"></i><h6>Trusted Since Years</h6><p>A name Hyderabad relies on</p></div></div>
+      <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="180"><div class="why-card"><i class="fa-solid fa-headset"></i><h6>After-Sales Care</h6><p>We're here after the sale too</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REVIEWS ================= -->
+<section class="bg-soft" id="reviews">
+  <div class="container">
+    <div class="text-center mb-4" data-aos="fade-up">
+      <span class="section-tag">Customer Voices</span>
+      <h2 class="section-title">What Our Customers Say</h2>
+      <div class="rating-hero-badge"><i class="fa-solid fa-star" style="color:#FFC107"></i> 4.2 Google Rating &nbsp;·&nbsp; based on verified customer reviews</div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4" data-aos="fade-up">
+        <div class="review-card">
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></div>
+          <p class="txt">"Bought a double-door refrigerator here — the staff explained every model clearly and the installation was quick. Fair pricing too."</p>
+          <div class="reviewer"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="customer"><div><h6>Ravi Kumar</h6><span>Chinthal, Hyderabad</span></div></div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="80">
+        <div class="review-card">
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></div>
+          <p class="txt">"Good collection of ACs and TVs under one roof. Got a great exchange offer on my old washing machine. Delivery was on time."</p>
+          <div class="reviewer"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="customer"><div><h6>Swathi Reddy</h6><span>Balanagar, Hyderabad</span></div></div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="160">
+        <div class="review-card">
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></div>
+          <p class="txt">"Reliable local showroom. Genuine products, no pushy sales talk, and the EMI process was hassle-free. Recommended for appliance shopping."</p>
+          <div class="reviewer"><img src="https://randomuser.me/api/portraits/men/65.jpg" alt="customer"><div><h6>Mohammed Aslam</h6><span>Sri Sai Colony, Hyderabad</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6" data-aos="fade-right">
+        <div class="about-img-wrap">
+          <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=1974&auto=format&fit=crop" alt="Sai Veerabhadra Electronics showroom">
+          <div class="about-stat"><h3>4.2★</h3><span>Google Rating</span></div>
+        </div>
+      </div>
+      <div class="col-lg-6" data-aos="fade-left">
+        <span class="section-tag">Who We Are</span>
+        <h2 class="section-title">About Sai Veerabhadra Electronics</h2>
+        <p class="section-sub" style="max-width:100%;">Sai Veerabhadra Electronics is one of Hyderabad's trusted home appliance and electronics stores, offering quality products from leading brands at competitive prices. We're committed to customer satisfaction through genuine products, affordable pricing, installation support, and excellent after-sales service.</p>
+        <div class="row mt-4 g-3">
+          <div class="col-6"><h4 class="fw-bold" style="color:var(--primary)">17+</h4><span class="text-muted small">Top Brands Stocked</span></div>
+          <div class="col-6"><h4 class="fw-bold" style="color:var(--primary)">14</h4><span class="text-muted small">Product Categories</span></div>
+        </div>
+        <a href="tel:+919553733120" class="btn-shop ripple mt-4 d-inline-block"><i class="fa-solid fa-phone me-2"></i>Call +91 95537 33120</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LOCATION ================= -->
+<section class="bg-soft" id="location">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="section-tag">Visit Our Showroom</span>
+      <h2 class="section-title">Store Location</h2>
+      <p class="section-sub mx-auto">Drop by and experience our full appliance range in person.</p>
+    </div>
+    <div class="row g-4 align-items-stretch">
+      <div class="col-lg-7" data-aos="fade-up">
+        <div class="map-wrap">
+          <iframe src="https://maps.google.com/maps?q=Sai%20Veerabhadra%20Electronics%2C%2019%20HMT%20Rd%2C%20Sri%20Sai%20Colony%2C%20Durga%20Nagar%2C%20Chinthal%2C%20Balanagar%2C%20Hyderabad%2C%20Telangana%20500054&t=&z=15&ie=UTF8&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Store location map"></iframe>
+        </div>
+      </div>
+      <div class="col-lg-5 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="100">
+        <div class="contact-card">
+          <i class="fa-solid fa-location-dot"></i>
+          <div><h6>Address</h6><p>19, HMT Rd, Opp. Asian Sha Theatre, Sri Sai Colony, Durga Nagar, Chinthal, Balanagar, Hyderabad, Telangana - 500054</p></div>
+        </div>
+        <div class="contact-card">
+          <i class="fa-solid fa-clock"></i>
+          <div><h6>Store Hours</h6><p>Daily: 10:30 AM – 9:30 PM</p></div>
+        </div>
+        <a href="https://maps.google.com/maps?q=Sai%20Veerabhadra%20Electronics%2C%2019%20HMT%20Rd%2C%20Sri%20Sai%20Colony%2C%20Durga%20Nagar%2C%20Chinthal%2C%20Balanagar%2C%20Hyderabad%2C%20Telangana%20500054" target="_blank" class="btn-shop ripple text-center mt-2"><i class="fa-solid fa-diamond-turn-right me-2"></i>Get Directions</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="section-tag">Get In Touch</span>
+      <h2 class="section-title">Contact Us</h2>
+      <p class="section-sub mx-auto">Have a question about a product or an order? Send us a message — we usually reply the same day.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-5" data-aos="fade-up">
+        <div class="contact-card"><i class="fa-solid fa-phone"></i><div><h6>Phone</h6><p>+91 95537 33120</p></div></div>
+        <div class="contact-card"><i class="fa-solid fa-business-time"></i><div><h6>Business Hours</h6><p>10:30 AM – 9:30 PM, Daily</p></div></div>
+        <div class="contact-card"><i class="fa-solid fa-map-location-dot"></i><div><h6>Address</h6><p>19, HMT Rd, Opp. Asian Sha Theatre, Sri Sai Colony, Durga Nagar, Chinthal, Balanagar, Hyderabad, Telangana - 500054</p></div></div>
+      </div>
+      <div class="col-lg-7" data-aos="fade-up" data-aos-delay="100">
+        <div class="form-glass">
+          <form id="contactForm">
+            <div class="row g-3">
+              <div class="col-md-6"><input type="text" class="form-control" placeholder="Your Name" required></div>
+              <div class="col-md-6"><input type="tel" class="form-control" placeholder="Phone Number" required></div>
+              <div class="col-12"><input type="email" class="form-control" placeholder="Email Address" required></div>
+              <div class="col-12"><textarea class="form-control" rows="4" placeholder="Your Message" required></textarea></div>
+              <div class="col-12"><button type="submit" class="btn-submit ripple">Send Message <i class="fa-solid fa-paper-plane ms-2"></i></button></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="brand-logo mb-3" style="color:#fff;"><span class="logo-mark"><i class="fa-solid fa-bolt"></i></span><span class="brand-name-hl">Sai Veerabhadra</span>&nbsp;Electronics</div>
+        <p style="font-size:.92rem;line-height:1.7;">Hyderabad's trusted showroom for premium home appliances and electronics — genuine brands, honest prices, expert service.</p>
+        <div class="d-flex mt-3">
+          <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6>Quick Links</h6>
+        <a href="#categories">Products</a>
+        <a href="#offers">Offers</a>
+        <a href="#about">About Us</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6>Top Brands</h6>
+        <a href="#">Samsung</a>
+        <a href="#">LG</a>
+        <a href="#">Sony</a>
+        <a href="#">Whirlpool</a>
+        <a href="#">Bosch</a>
+      </div>
+      <div class="col-lg-4">
+        <h6>Visit Us</h6>
+        <p style="font-size:.9rem;line-height:1.7;"><i class="fa-solid fa-location-dot me-2"></i>19, HMT Rd, Opp. Asian Sha Theatre, Sri Sai Colony, Durga Nagar, Chinthal, Balanagar, Hyderabad, Telangana - 500054</p>
+        <p style="font-size:.9rem;"><i class="fa-solid fa-phone me-2"></i>+91 95537 33120</p>
+        <p style="font-size:.9rem;"><i class="fa-solid fa-clock me-2"></i>10:30 AM – 9:30 PM, Daily</p>
+        <p style="font-size:.9rem;"><i class="fa-solid fa-star me-2" style="color:#FFC107"></i>4.2/5 Google Rating</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Sai Veerabhadra Electronics. All Rights Reserved.
+    </div>
+  </div>
+</footer>
+
+<a href="tel:+919553733120" class="float-call d-flex d-md-none"><i class="fa-solid fa-phone"></i></a>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
+<script>
+  AOS.init({once:true, duration:800, easing:'ease-out-cubic'});
+
+  new Swiper(".brandSwiper", {
+    slidesPerView: 2,
+    spaceBetween: 18,
+    loop: true,
+    autoplay: { delay: 1800, disableOnInteraction:false },
+    breakpoints: {
+      480:{slidesPerView:3},
+      768:{slidesPerView:4},
+      992:{slidesPerView:6}
+    }
+  });
+
+  // navbar scroll state
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 40){ nav.classList.add('scrolled'); }
+    else{ nav.classList.remove('scrolled'); }
+  });
+
+  // ripple effect
+  document.querySelectorAll('.ripple').forEach(btn=>{
+    btn.addEventListener('click', function(e){
+      const circle = document.createElement('span');
+      const diameter = Math.max(this.clientWidth, this.clientHeight);
+      circle.style.width = circle.style.height = diameter + 'px';
+      const rect = this.getBoundingClientRect();
+      circle.style.left = (e.clientX - rect.left - diameter/2) + 'px';
+      circle.style.top = (e.clientY - rect.top - diameter/2) + 'px';
+      circle.classList.add('ripple-el');
+      this.appendChild(circle);
+      setTimeout(()=>circle.remove(), 600);
+    });
+  });
+
+  // contact form (demo submit)
+  const form = document.getElementById('contactForm');
+  if(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      const original = btn.innerHTML;
+      btn.innerHTML = 'Message Sent <i class="fa-solid fa-check ms-2"></i>';
+      btn.style.background = '#1a9c5b';
+      form.reset();
+      setTimeout(()=>{ btn.innerHTML = original; btn.style.background=''; }, 2800);
+    });
+  }
+</script>
+</body>
+</html>

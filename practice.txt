@@ -1,0 +1,11 @@
+                    <button class="btn btn-ghost">About me</button>
+                    <option value="/Aboutme">Aboutme</option>
+
+
+                                      <option value="/Aboutme">Aboutme</option>
+                <a href="{{url for ('Aboutme')}}" class="btn btn ghost">About me</a>
+
+
+                      <a href="Kommu_Balu_Resume.docx" download class="resume-btn"><i class="fa-solid fa-download me-1"></i> Resume</a>
+
+                      <button class="btn btn-ghost">About me</button>

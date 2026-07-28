@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skyline Weather — Clear Skies</title>
+<meta name="description" content="A premium weather app landing page with a clear sunny sky and glassmorphism UI.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* ==========================================================================
+   SKYLINE WEATHER — clear sky edition
+   Pure HTML5 + CSS3. No JS, no frameworks.
+   ========================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --sky-top: #2E9BF0;
+    --sky-mid: #6EC6FF;
+    --sky-low: #BFE8FF;
+    --sun: #FFE07A;
+    --sun-core: #FFF6D6;
+    --navy-text: #0B132B;
+    --cyan: #1C86C9;
+    --white: #FFFFFF;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--navy-text);
+    background: var(--sky-top);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   1. BACKGROUND SCENE — clear sunny sky
+   ========================================================================== */
+
+.scene {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    background: linear-gradient(180deg,
+        var(--sky-top) 0%,
+        var(--sky-mid) 55%,
+        var(--sky-low) 100%
+    );
+}
+
+/* ---------- Sun ---------- */
+.sun {
+    position: absolute;
+    top: 8%;
+    right: 12%;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 35%, var(--sun-core), var(--sun) 55%, rgba(255, 224, 122, 0) 72%);
+    box-shadow: 0 0 90px 30px rgba(255, 224, 122, 0.45);
+    animation: sunPulse 6s ease-in-out infinite;
+}
+
+@keyframes sunPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50%      { transform: scale(1.04); opacity: 0.92; }
+}
+
+.sun-rays {
+    position: absolute;
+    top: 8%;
+    right: 12%;
+    width: 220px;
+    height: 220px;
+    animation: rotateRays 90s linear infinite;
+}
+
+.sun-rays::before {
+    content: "";
+    position: absolute;
+    inset: -60px;
+    background: repeating-conic-gradient(
+        rgba(255, 246, 214, 0.16) 0deg 4deg,
+        transparent 4deg 18deg
+    );
+    border-radius: 50%;
+}
+
+@keyframes rotateRays {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* ---------- Soft light clouds ---------- */
+.clouds {
+    position: absolute;
+    inset: 0;
+}
+
+.cloud {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(10px);
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.55) 70%, transparent 100%);
+    opacity: 0.85;
+}
+
+.clouds--back .cloud {
+    filter: blur(16px);
+    opacity: 0.55;
+}
+
+.c1 { width: 320px; height: 110px; top: 18%; left: -12%; animation: drift 70s linear infinite; }
+.c2 { width: 260px; height: 90px;  top: 30%; left: 60%;  animation: drift 85s linear infinite reverse; }
+
+.clouds--front .cloud {
+    filter: blur(8px);
+    opacity: 0.9;
+}
+
+.c3 { width: 220px; height: 80px; top: 46%; left: 8%;  animation: drift 48s linear infinite; }
+.c4 { width: 180px; height: 65px; top: 60%; left: 68%; animation: drift 55s linear infinite reverse; }
+.c5 { width: 200px; height: 70px; top: 12%; left: 32%; animation: drift 62s linear infinite; }
+
+@keyframes drift {
+    0%   { transform: translateX(0); }
+    50%  { transform: translateX(70px); }
+    100% { transform: translateX(0); }
+}
+
+/* ==========================================================================
+   2. PAGE LAYOUT / CONTENT
+   ========================================================================== */
+
+.page {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 24px 80px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.topbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 4px 0;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0.3px;
+    color: var(--navy-text);
+}
+
+.brand-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--sun);
+    box-shadow: 0 0 12px 2px rgba(255, 224, 122, 0.9);
+}
+
+.ghost-btn {
+    background: rgba(255, 255, 255, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    color: var(--navy-text);
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.ghost-btn:hover {
+    background: rgba(255, 255, 255, 0.55);
+    transform: translateY(-1px);
+}
+
+.hero-copy {
+    text-align: center;
+    margin: 56px 0 40px;
+    max-width: 640px;
+}
+
+.eyebrow {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 14px;
+}
+
+.hero-copy h1 {
+    font-size: clamp(30px, 5vw, 48px);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--navy-text);
+    text-shadow: 0 4px 24px rgba(255, 255, 255, 0.4);
+}
+
+/* ==========================================================================
+   3. GLASSMORPHIC WEATHER CARD
+   ========================================================================== */
+
+.weather-card {
+    width: 100%;
+    max-width: 380px;
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 25px;
+    box-shadow:
+        0 20px 60px rgba(46, 155, 240, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    padding: 32px 28px 28px;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    color: var(--navy-text);
+}
+
+.weather-card:hover {
+    transform: translateY(-6px);
+    box-shadow:
+        0 28px 70px rgba(46, 155, 240, 0.32),
+        inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.location h2 {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.location p {
+    font-size: 13px;
+    color: rgba(11, 19, 43, 0.6);
+    margin-top: 2px;
+}
+
+.weather-icon {
+    width: 64px;
+    height: 64px;
+}
+
+.icon-float {
+    width: 100%;
+    height: 100%;
+    animation: floatIcon 4s ease-in-out infinite;
+    filter: drop-shadow(0 8px 14px rgba(255, 180, 60, 0.35));
+}
+
+@keyframes floatIcon {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-8px); }
+}
+
+.temp-row {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-top: 18px;
+}
+
+.temp {
+    font-size: 56px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    animation: tempFade 3.5s ease-in-out infinite;
+}
+
+.deg {
+    font-size: 26px;
+    font-weight: 500;
+    vertical-align: super;
+}
+
+@keyframes tempFade {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.75; }
+}
+
+.desc {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--cyan);
+}
+
+.hilo {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 13px;
+    color: rgba(11, 19, 43, 0.65);
+    margin-top: 6px;
+}
+
+.hilo-divider {
+    opacity: 0.5;
+}
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 26px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(11, 19, 43, 0.15);
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 14px;
+    padding: 10px 8px;
+    text-align: center;
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.stat:hover {
+    background: rgba(255, 255, 255, 0.65);
+    transform: translateY(-2px);
+}
+
+.stat-label {
+    font-size: 10.5px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    color: rgba(11, 19, 43, 0.55);
+}
+
+.stat-value {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.glow-btn {
+    width: 100%;
+    margin-top: 26px;
+    padding: 15px;
+    border: none;
+    border-radius: 16px;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--navy-text);
+    background: linear-gradient(135deg, var(--sun), #ffcf5c);
+    box-shadow: 0 0 0 rgba(255, 224, 122, 0);
+    transition: box-shadow 0.35s ease, transform 0.2s ease;
+}
+
+.glow-btn:hover {
+    box-shadow: 0 0 26px 4px rgba(255, 207, 92, 0.6);
+    transform: translateY(-2px);
+}
+
+.glow-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* ==========================================================================
+   4. RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .page { padding: 24px 20px 60px; }
+    .hero-copy { margin: 40px 0 32px; }
+    .stat-grid { gap: 10px; }
+    .sun, .sun-rays { width: 160px; height: 160px; }
+}
+
+@media (max-width: 480px) {
+    .topbar { padding: 0; }
+    .brand { font-size: 16px; }
+    .ghost-btn { padding: 8px 16px; font-size: 12px; }
+    .hero-copy h1 { font-size: 26px; }
+    .eyebrow { font-size: 11px; }
+    .weather-card { padding: 26px 20px 22px; border-radius: 20px; }
+    .temp { font-size: 46px; }
+    .stat-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .stat { padding: 8px 4px; }
+    .stat-value { font-size: 12.5px; }
+    .sun, .sun-rays { width: 120px; height: 120px; top: 5%; right: 6%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cloud, .sun, .sun-rays, .icon-float, .temp {
+        animation: none !important;
+    }
+}
+</style>
+</head>
+<body>
+
+    <!-- ============================================================
+         BACKGROUND SCENE — clear sunny sky
+    ============================================================= -->
+    <div class="scene" aria-hidden="true">
+        <div class="sun-rays"></div>
+        <div class="sun"></div>
+
+        <div class="clouds clouds--back">
+            <span class="cloud c1"></span>
+            <span class="cloud c2"></span>
+        </div>
+        <div class="clouds clouds--front">
+            <span class="cloud c3"></span>
+            <span class="cloud c4"></span>
+            <span class="cloud c5"></span>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         MAIN CONTENT
+    ============================================================= -->
+    <main class="page">
+
+        <header class="topbar">
+            <div class="brand">
+                <span class="brand-dot"></span>
+                Skyline
+            </div>
+            <button class="ghost-btn">Get the app</button>
+        </header>
+
+        <section class="hero-copy">
+            <p class="eyebrow">Live conditions · Updated just now</p>
+            <h1>Weather that feels<br>like looking outside.</h1>
+        </section>
+
+        <!-- ============================================================
+             GLASSMORPHIC WEATHER CARD
+        ============================================================= -->
+        <section class="weather-card" aria-label="Current weather for Hyderabad">
+
+            <div class="card-top">
+                <div class="location">
+                    <h2>Hyderabad</h2>
+                    <p>Telangana, India</p>
+                </div>
+                <div class="weather-icon" aria-hidden="true">
+                    <svg viewBox="0 0 100 100" class="icon-float">
+                        <circle cx="50" cy="42" r="20" fill="#FFCF5C"/>
+                        <g stroke="#FFCF5C" stroke-width="4" stroke-linecap="round">
+                            <line x1="50" y1="8"  x2="50" y2="16"/>
+                            <line x1="50" y1="68" x2="50" y2="76"/>
+                            <line x1="16" y1="42" x2="24" y2="42"/>
+                            <line x1="76" y1="42" x2="84" y2="42"/>
+                            <line x1="24" y1="16" x2="30" y2="22"/>
+                            <line x1="76" y1="16" x2="70" y2="22"/>
+                            <line x1="24" y1="68" x2="30" y2="62"/>
+                            <line x1="76" y1="68" x2="70" y2="62"/>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="temp-row">
+                <span class="temp">28<span class="deg">°C</span></span>
+                <span class="desc">Clear Sky</span>
+            </div>
+
+            <div class="hilo">
+                <span>High 32°</span>
+                <span class="hilo-divider">·</span>
+                <span>Low 22°</span>
+            </div>
+
+            <div class="stat-grid">
+                <div class="stat">
+                    <span class="stat-label">Feels like</span>
+                    <span class="stat-value">29°C</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Humidity</span>
+                    <span class="stat-value">38%</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Wind speed</span>
+                    <span class="stat-value">10 km/h</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">UV index</span>
+                    <span class="stat-value">7 · High</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Sunrise</span>
+                    <span class="stat-value">5:52 AM</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Sunset</span>
+                    <span class="stat-value">6:41 PM</span>
+                </div>
+            </div>
+
+            <button class="glow-btn">View 7-day forecast</button>
+        </section>
+
+    </main>
+
+</body>
+</html>

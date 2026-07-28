@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 50%, #a685e2 100%);
+            overflow: hidden;
+        }
+
+        /* Soft floating blobs for depth behind the glass card */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.5;
+        }
+
+        .blob1 {
+            width: 300px;
+            height: 300px;
+            background: #ffffff;
+            top: -80px;
+            left: -80px;
+        }
+
+        .blob2 {
+            width: 250px;
+            height: 250px;
+            background: #ffd6e8;
+            bottom: -60px;
+            right: -60px;
+        }
+
+        /* Glass card */
+        .login-card {
+            position: relative;
+            width: 100%;
+            max-width: 360px;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 28px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.25);
+            padding: 40px 32px;
+            margin: 20px;
+        }
+
+        .icon-wrap {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 20px;
+            background: rgba(255, 255, 255, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 22px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 28px;
+        }
+
+        .input-group {
+            margin-bottom: 16px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 6px;
+            padding-left: 4px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 15px;
+            color: #1a1a1a;
+            background: rgba(255, 255, 255, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 14px;
+            outline: none;
+            transition: background 0.2s, box-shadow 0.2s;
+        }
+
+        .input-group input::placeholder {
+            color: rgba(30, 30, 30, 0.45);
+        }
+
+        .input-group input:focus {
+            background: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #2a2a2a;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: transform 0.15s ease, background 0.2s;
+        }
+
+        .login-btn:hover {
+            background: #ffffff;
+        }
+
+        .login-btn:active {
+            transform: scale(0.97);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 22px 0;
+        }
+
+        .divider span {
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .divider p {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .footer-text {
+            text-align: center;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .footer-text a {
+            color: #fff;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .error-msg {
+            text-align: center;
+            font-size: 13px;
+            color: #ffe1e1;
+            background: rgba(255, 0, 0, 0.15);
+            border: 1px solid rgba(255, 100, 100, 0.4);
+            border-radius: 10px;
+            padding: 8px;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+
+    <div class="login-card">
+        <div class="icon-wrap">🎓</div>
+        <h1>Student login</h1>
+        <p class="subtitle">Sign in to access your student portal</p>
+
+        {% if error %}
+        <div class="error-msg">{{ error }}</div>
+        {% endif %}
+
+        <form method="POST" action="{{ url_for('login') }}">
+            <div class="input-group">
+                <label for="username">Student ID</label>
+                <input type="text" id="username" name="username" placeholder="Enter your student ID" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+
+            <button type="submit" class="login-btn">Sign in</button>
+        </form>
+
+        <div class="divider">
+            <span></span>
+            <p>or</p>
+            <span></span>
+        </div>
+
+        <p class="footer-text">Forgot password? <a href="#">Reset it</a></p>
+    </div>
+
+</body>
+</html>

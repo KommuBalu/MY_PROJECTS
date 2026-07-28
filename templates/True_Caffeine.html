@@ -1,0 +1,423 @@
+<!-- /* TRUE COFFEINE WEBSITE:CODING BY PAWAN */ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRUE CAFFEINE</title>
+    <script src="https://kit.fontawesome.com/a39dd333ae.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+    <style>
+        /* TRUE COFFEINE CODING BY PAWAN */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #F6F7F2;
+            color: #1A1A1A;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ==================== MENU ==================== */
+        .menu {
+            height: 50px;
+            width: 50px;
+            color: white;
+            margin: right;
+            font-size: 35px;
+            padding-right: 90rem;
+            padding-bottom: 600px;
+            padding-top: 5px;
+        }
+
+        /* ==================== HERO SECTION ==================== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            height: 100dvh;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero {
+            background-image: url("{{ url_for('static', filename='coffee.png') }}");
+            }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.1) 0%,
+                rgba(0, 0, 0, 0.5) 50%,
+                rgba(0, 0, 0, 0.7) 100%
+            );
+        }
+
+        .hero-logo {
+            height: 250px;
+            width: auto;
+            filter: brightness(0) invert(5);
+            position: relative;
+            margin-right: 580px;
+            margin-top: 15px;
+        }
+
+        .Tagline {
+            font-size: 20px;
+            font-weight: 400;
+            letter-spacing: 4px;
+            padding-top: 50px;
+            padding-left: 420px;
+            margin-bottom: 140px;
+            font-family: "Miniver", cursive;
+            color: white;
+        }
+
+        /* ==================== FEATURES SECTION ==================== */
+        .features {
+            padding: 120px 0;
+            background: #FFFFFF;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 64px;
+            color: #1A1A1A;
+            text-transform: uppercase;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 48px;
+        }
+
+        .feature {
+            text-align: center;
+        }
+
+        .feature h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1A1A1A;
+        }
+
+        .feature p {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.7;
+            color: white;
+        }
+
+        .feature-icon {
+            width: 48px;
+            align-items: center;
+        }
+
+        .king {
+            text-align: center;
+            padding: 35px 25px;
+            border-radius: 16px;
+            background-color: #818571;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .king:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.10);
+        }
+
+        /* ==================== LOCATIONS SECTION ==================== */
+        .locations {
+            padding: 120px;
+            background: #818571;
+        }
+
+        .locations h2 {
+            text-align: center;
+            font-size: 15px;
+            font-weight: 750;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            color: black;
+            text-transform: uppercase;
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 24px;
+        }
+
+        .location-subtitle {
+            text-align: center;
+            font-size: 16px;
+            font-weight: 400;
+            color: white;
+            margin-bottom: 64px;
+        }
+
+        .location {
+            text-align: center;
+            padding: 32px 16px;
+            background: #e7e3e3;
+            border-radius: 16px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .location h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: black;
+            text-transform: uppercase;
+        }
+
+        .location p {
+            font-size: 13px;
+            font-weight: 400;
+            color: rgb(5, 72, 5);
+        }
+
+        .location:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.10);
+        }
+
+        /* ======================== Footer ======================== */
+        footer {
+            background: #1A1A1A;
+            color: #1A1A1A;
+            padding: 64px 0 32px;
+        }
+
+        .footer-content {
+            display: grid;
+            gap: 64px;
+            margin-bottom: 48px;
+            grid-template-columns: 2fr 1fr 1fr;
+        }
+
+        .footerlogo {
+            height: 250px;
+            width: auto;
+            padding-bottom: 10px;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.2;
+        }
+
+        .footer-links {
+            padding-top: 85px;
+            padding-left: 120px;
+            padding-right: 20px;
+        }
+
+        .footer-links h4 {
+            font-size: 12px;
+            font-weight: 600;
+            color: gray;
+            text-transform: uppercase;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: gray;
+        }
+
+        /* =================== FOOTER-BOTTOM =================== */
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 32px;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            font-size: 13px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .icon {
+            height: 20px;
+            width: auto;
+            color: white;
+            padding-top: 15px;
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ==================== HERO SECTION ==================== -->
+<section class="hero">
+    <!-- <img class="hero" src="{{ url_for('static', filename='coffee.png') }}" alt="trueBlack"> -->
+    <div class="menu">
+        <p><i class="fa-solid fa-bars"></i></p>
+        
+    </div>
+    <div class="hero-overlay">
+        <div class="hero-content">
+            <img class="hero-logo" src="{{ url_for('static', filename='coffeelogo2.png') }}" alt="trueBlack">
+            <p class="Tagline">The orginal....<i class="fa-regular fa-heart"></i></p>
+        </div>
+    </div>
+</section>
+
+
+<!-- ==================== FEATURES SECTION ==================== -->
+<section id="features" class="features">
+    <div class="container">
+        <h2>THE TRUE COFFEINE EXPERIENCE</h2>
+        <div class="feature-grid">
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8zM6 1v3M10 1v3M14 1v3"></path>
+                    </svg>
+                </div>
+                <div class="king">
+                    <h3>True Coffee</h3>
+                    <p>Specialty-grade beans, expertly roasted and crafted by skilled baristas.</p>
+                </div>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                        <line x1="12" y1="18" x2="12" y2="18"></line>
+                    </svg>
+                </div>
+                <div class="king">
+                    <h3>Easy Ordering</h3>
+                    <p>Browse our full menu, customize your drink, and order ahead for pickup.</p>
+                </div>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                </div>
+                <div class="king">
+                    <h3>Skip the Line</h3>
+                    <p>Your order is ready when you arrive. No waiting, just great coffee.</p>
+                </div>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                    </svg>
+                </div>
+                <div class="king">
+                    <h3>Rewards</h3>
+                    <p>Earn points with every purchase and unlock exclusive rewards & more.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== LOCATIONS SECTION ==================== -->
+<section id="locations" class="locations">
+    <div class="container">
+        <h2>Our Locations 📍</h2>
+        <p class="location-subtitle">Find us across Hyderabad!</p>
+        <div class="location-grid">
+            <div class="location">
+                <h3>Warangal</h3>
+                <p>Warangal</p>
+            </div>
+            <div class="location">
+                <h3>Chintal</h3>
+                <p>Hyderabad</p>
+            </div>
+            <div class="location">
+                <h3>Bala Nagar</h3>
+                <p>Hyderabad</p>
+            </div>
+            <div class="location">
+                <h3>Kukatpally</h3>
+                <p>Hyderabad</p>
+            </div>
+            <div class="location">
+                <h3>Suchitra</h3>
+                <p>Hyderabad</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ FOOTER ============== -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img class="footerlogo" src="cofeelogo2.png" alt="TRUE BLACK">
+            </div>
+
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <div class="icon">
+                    <p><i class="fa-regular fa-envelope"></i></p>
+                </div>
+                <a href="mailto:kommupawan84@gmail.com">kommupawan84gmail</a>
+                <br>
+                <div class="icon">
+                    <p><i class="fa-brands fa-instagram"></i></p>
+                </div>
+                <a href="https://www.instagram.com/mr_rex___________20?igsh=aXZzYzd3MWNnZXBl&utm_source=qr">Mr_Rex_________20</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======== FOOTER-BOTTOM ========== -->
+    <div class="footer-bottom">
+        <p>© 2026 Pawan Coffee Works Private Limited. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

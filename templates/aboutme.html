@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kommu Balu | Python Full Stack Developer</title>
+<meta name="description" content="Portfolio of Kommu Balu — Python Full Stack Developer specializing in Flask, FastAPI and secure web applications.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+:root{
+  --navy:#0B0F24;
+  --navy-2:#131938;
+  --panel:#171F42;
+  --gold:#F5A623;
+  --gold-2:#FFC862;
+  --ink:#F4F6FB;
+  --muted:#9AA3C4;
+  --line:rgba(255,255,255,0.08);
+  --radius-lg:24px;
+  --radius-md:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--navy);
+  color:var(--ink);
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit;}
+.container{max-width:1160px;margin:0 auto;padding:0 24px;}
+h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;}
+code,.mono{font-family:'JetBrains Mono',monospace;}
+section{padding:110px 0;position:relative;}
+.section-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  color:var(--gold);font-size:.78rem;font-weight:600;
+  letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;
+}
+.section-eyebrow::before{content:"";width:24px;height:2px;background:var(--gold);display:inline-block;}
+.section-title{font-size:clamp(1.7rem,3.2vw,2.4rem);font-weight:700;margin-bottom:18px;}
+.section-sub{color:var(--muted);max-width:600px;font-size:1.02rem;line-height:1.7;}
+
+/* ============ background ambience ============ */
+.bg-grid{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size:48px 48px;
+  mask-image:radial-gradient(circle at 50% 0%, black, transparent 75%);
+}
+.glow-orb{
+  position:fixed;border-radius:50%;filter:blur(120px);z-index:0;pointer-events:none;
+}
+.glow-1{width:520px;height:520px;background:rgba(245,166,35,0.12);top:-120px;right:-160px;}
+.glow-2{width:420px;height:420px;background:rgba(78,99,199,0.18);bottom:0;left:-140px;}
+
+/* ============ NAV ============ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:20px 0;transition:.35s ease;
+}
+nav.scrolled{
+  background:rgba(11,15,36,0.82);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+  padding:14px 0;
+}
+nav .row{display:flex;align-items:center;justify-content:space-between;}
+.logo{
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.15rem;
+  display:flex;align-items:center;gap:10px;
+}
+.logo .mark{
+  width:38px;height:38px;border-radius:10px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-2));
+  color:var(--navy);display:flex;align-items:center;justify-content:center;
+  font-family:'JetBrains Mono',monospace;font-weight:700;font-size:.95rem;
+}
+.nav-links{display:flex;align-items:center;gap:32px;}
+.nav-links a{
+  font-size:.92rem;font-weight:500;color:var(--muted);
+  position:relative;transition:.25s ease;
+}
+.nav-links a:hover{color:var(--ink);}
+.nav-links a.resume-btn{
+  color:var(--navy);background:var(--gold);
+  padding:10px 20px;border-radius:30px;font-weight:600;
+}
+.nav-links a.resume-btn:hover{background:var(--gold-2);}
+.nav-toggle{display:none;font-size:1.4rem;color:var(--ink);background:none;border:none;}
+
+/* ============ HERO ============ */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding-top:100px;position:relative;z-index:1;
+}
+.hero-grid{
+  display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.3);
+  padding:8px 18px;border-radius:30px;font-size:.82rem;color:var(--gold-2);
+  margin-bottom:24px;font-weight:500;
+}
+.hero-eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 1.8s infinite;}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(245,166,35,0.6);}
+  70%{box-shadow:0 0 0 8px rgba(245,166,35,0);}
+  100%{box-shadow:0 0 0 0 rgba(245,166,35,0);}
+}
+.hero h1{
+  font-size:clamp(2.2rem,4.6vw,3.6rem);
+  font-weight:700;line-height:1.12;margin-bottom:20px;
+}
+.hero h1 .hl{color:var(--gold);}
+.hero p.lead{color:var(--muted);font-size:1.08rem;max-width:520px;line-height:1.75;margin-bottom:30px;}
+
+.terminal{
+  background:var(--panel);border:1px solid var(--line);border-radius:14px;
+  padding:0;max-width:480px;margin-bottom:34px;overflow:hidden;
+  box-shadow:0 20px 50px -20px rgba(0,0,0,0.5);
+}
+.terminal-bar{
+  display:flex;align-items:center;gap:7px;
+  padding:12px 16px;border-bottom:1px solid var(--line);
+}
+.terminal-bar span{width:10px;height:10px;border-radius:50%;}
+.terminal-bar span:nth-child(1){background:#FF5F57;}
+.terminal-bar span:nth-child(2){background:#FEBC2E;}
+.terminal-bar span:nth-child(3){background:#28C840;}
+.terminal-body{padding:18px 20px;font-family:'JetBrains Mono',monospace;font-size:.88rem;color:#B9C4E6;line-height:1.8;}
+.terminal-body .k{color:#7FB6FF;}
+.terminal-body .s{color:var(--gold-2);}
+.terminal-body .c{color:#6BCB77;}
+.cursor{display:inline-block;width:8px;height:16px;background:var(--gold);vertical-align:middle;animation:blink 1s step-end infinite;}
+@keyframes blink{50%{opacity:0;}}
+
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:44px;}
+.btn-gold{
+  background:var(--gold);color:var(--navy);font-weight:600;
+  padding:15px 30px;border-radius:12px;transition:.3s ease;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-gold:hover{background:var(--gold-2);transform:translateY(-2px);}
+.btn-outline{
+  border:1.5px solid var(--line);color:var(--ink);font-weight:600;
+  padding:15px 30px;border-radius:12px;transition:.3s ease;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold-2);}
+
+.hero-stats{display:flex;gap:40px;flex-wrap:wrap;}
+.hero-stats .stat h3{font-size:1.7rem;font-weight:700;color:var(--gold-2);}
+.hero-stats .stat span{color:var(--muted);font-size:.82rem;}
+
+/* photo with orbit badges */
+.photo-wrap{position:relative;display:flex;justify-content:center;}
+.photo-ring{
+  position:relative;width:340px;height:340px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),transparent 60%);
+  padding:4px;
+}
+.photo-ring img{
+  width:100%;height:100%;object-fit:cover;border-radius:50%;
+  border:6px solid var(--navy);display:block;
+}
+.orbit{
+  position:absolute;top:50%;left:50%;
+  width:420px;height:420px;margin:-210px 0 0 -210px;
+  border:1px dashed rgba(255,255,255,0.15);border-radius:50%;
+  animation:spin 26s linear infinite;
+}
+.orbit-badge{
+  position:absolute;width:52px;height:52px;border-radius:14px;
+  background:var(--panel);border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;box-shadow:0 10px 25px -8px rgba(0,0,0,0.5);
+  animation:counter-spin 26s linear infinite;
+}
+.orbit-badge.py{top:-26px;left:50%;margin-left:-26px;color:#4B8BBE;}
+.orbit-badge.flask{top:50%;right:-26px;margin-top:-26px;color:#F4F4F4;background:#1c2540;}
+.orbit-badge.sql{bottom:-26px;left:50%;margin-left:-26px;color:#00758F;}
+.orbit-badge.git{top:50%;left:-26px;margin-top:-26px;color:#F05032;}
+@keyframes spin{from{transform:rotate(0);}to{transform:rotate(360deg);}}
+@keyframes counter-spin{from{transform:rotate(0);}to{transform:rotate(-360deg);}}
+
+/* ============ ABOUT ============ */
+.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;align-items:center;}
+.about-card{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-lg);
+  padding:34px;
+}
+.about-card .row-item{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);font-size:.92rem;}
+.about-card .row-item:last-child{border-bottom:none;}
+.about-card .row-item span:first-child{color:var(--muted);}
+.about-card .row-item span:last-child{font-weight:600;}
+
+/* ============ SKILLS ============ */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;}
+.skill-card{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-md);
+  padding:26px;transition:.3s ease;
+}
+.skill-card:hover{border-color:rgba(245,166,35,0.4);transform:translateY(-4px);}
+.skill-card h4{font-size:1rem;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.skill-card h4 i{color:var(--gold);}
+.tag-row{display:flex;flex-wrap:wrap;gap:8px;}
+.tag{
+  background:rgba(255,255,255,0.05);border:1px solid var(--line);
+  padding:6px 13px;border-radius:20px;font-size:.8rem;color:var(--muted);
+}
+
+/* ============ PROJECTS ============ */
+.project-card{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-lg);
+  padding:34px;height:100%;position:relative;overflow:hidden;transition:.35s ease;
+}
+.project-card:hover{border-color:rgba(245,166,35,0.35);transform:translateY(-6px);}
+.project-card .num{
+  font-family:'JetBrains Mono',monospace;color:var(--gold);font-size:.85rem;margin-bottom:14px;display:block;
+}
+.project-card h3{font-size:1.3rem;margin-bottom:10px;}
+.project-card .stack{color:var(--gold-2);font-size:.82rem;font-family:'JetBrains Mono',monospace;margin-bottom:16px;display:block;}
+.project-card ul{list-style:none;color:var(--muted);font-size:.9rem;line-height:1.85;}
+.project-card ul li{position:relative;padding-left:20px;}
+.project-card ul li::before{content:"▹";position:absolute;left:0;color:var(--gold);}
+
+/* ============ TIMELINE (education/experience) ============ */
+.timeline{position:relative;padding-left:34px;}
+.timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:var(--line);}
+.tl-item{position:relative;padding-bottom:38px;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-item::before{
+  content:"";position:absolute;left:-34px;top:4px;
+  width:18px;height:18px;border-radius:50%;
+  background:var(--navy);border:3px solid var(--gold);
+}
+.tl-item h4{font-size:1.05rem;font-weight:600;margin-bottom:4px;}
+.tl-item .org{color:var(--gold-2);font-size:.88rem;margin-bottom:4px;}
+.tl-item .period{color:var(--muted);font-size:.8rem;margin-bottom:8px;font-family:'JetBrains Mono',monospace;}
+.tl-item p{color:var(--muted);font-size:.9rem;}
+
+/* ============ CERTIFICATIONS ============ */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;}
+.cert-card{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-md);
+  padding:22px;display:flex;align-items:center;gap:16px;
+}
+.cert-card i{
+  width:44px;height:44px;border-radius:12px;flex:0 0 44px;
+  background:rgba(245,166,35,0.12);color:var(--gold);
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+}
+.cert-card h5{font-size:.92rem;font-weight:600;margin-bottom:2px;}
+.cert-card span{color:var(--muted);font-size:.78rem;}
+
+/* ============ CONTACT ============ */
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;}
+.contact-item{display:flex;align-items:center;gap:16px;margin-bottom:22px;}
+.contact-item i{
+  width:48px;height:48px;border-radius:14px;flex:0 0 48px;
+  background:rgba(245,166,35,0.1);color:var(--gold);
+  display:flex;align-items:center;justify-content:center;font-size:1.05rem;
+}
+.contact-item h6{font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;}
+.contact-item p{font-size:.98rem;font-weight:500;}
+.form-panel{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-lg);padding:36px;
+}
+.form-control{
+  width:100%;background:rgba(255,255,255,0.04);border:1.5px solid var(--line);
+  color:var(--ink);padding:14px 16px;border-radius:12px;font-size:.92rem;margin-bottom:16px;
+  font-family:'Inter',sans-serif;
+}
+.form-control:focus{outline:none;border-color:var(--gold);}
+textarea.form-control{resize:vertical;min-height:110px;}
+
+/* ============ FOOTER ============ */
+footer{border-top:1px solid var(--line);padding:34px 0;position:relative;z-index:1;}
+footer .row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.social-row a{
+  width:38px;height:38px;border-radius:50%;background:var(--panel);border:1px solid var(--line);
+  display:inline-flex;align-items:center;justify-content:center;margin-left:10px;transition:.25s ease;
+}
+.social-row a:hover{border-color:var(--gold);color:var(--gold);}
+footer p{color:var(--muted);font-size:.85rem;}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;}
+}
+
+@media (max-width:900px){
+  .hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr;}
+  .photo-wrap{order:-1;margin-bottom:20px;}
+  .nav-links{
+    position:fixed;top:0;right:-100%;height:100vh;width:min(80vw,320px);
+    background:var(--navy-2);flex-direction:column;justify-content:center;
+    align-items:flex-start;padding:40px;transition:.35s ease;border-left:1px solid var(--line);
+  }
+  .nav-links.open{right:0;}
+  .nav-toggle{display:block;}
+}
+</style>
+</head>
+<body>
+    <a href="{{ url_for('Aboutme') }}">About Me</a>
+<div class="bg-grid"></div>
+<div class="glow-orb glow-1"></div>
+<div class="glow-orb glow-2"></div>
+
+<!-- ================= NAV ================= -->
+<nav id="mainNav">
+  <div class="container row">
+    <a href="#home" class="logo"><span class="mark">KB</span>Kommu Balu</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+
+      <a href="{{ url_for('static', filename='Kommu_Balu_Resume.docx') }}" download class="resume-btn">
+    <i class="fa-solid fa-download me-1"></i> Resume
+</a>
+    </div>
+    <button class="nav-toggle" id="navToggle"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <span class="hero-eyebrow"><span class="dot"></span> Available for new opportunities</span>
+      <h1>Hi, I'm Kommu Balu<br>Python Full Stack <span class="hl">Developer</span></h1>
+      <p class="lead">I build secure, scalable web applications — from REST APIs and databases to the interfaces people actually use. Computer Science graduate, 2025, specializing in Flask and FastAPI.</p>
+
+      <div class="terminal">
+        <div class="terminal-bar"><span></span><span></span><span></span></div>
+        <div class="terminal-body">
+<span class="k">def</span> <span class="c">build</span>(idea):<br>
+&nbsp;&nbsp;stack = [<span class="s">"Flask"</span>, <span class="s">"FastAPI"</span>, <span class="s">"MySQL"</span>]<br>
+&nbsp;&nbsp;<span class="k">return</span> ship(idea, stack)<span class="cursor"></span>
+        </div>
+      </div>
+
+      <div class="hero-btns">
+        <a href="#projects" class="btn-gold">View Projects <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="{{ url_for('static', filename='Kommu_Balu_Resume.docx') }}" download class="btn-outline"><i class="fa-solid fa-file-arrow-down"></i> Download Resume</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat"><h3>2+</h3><span>Projects Built</span></div>
+        <div class="stat"><h3>4</h3><span>Certifications</span></div>
+        <div class="stat"><h3>1</h3><span>Internship Completed</span></div>
+      </div>
+    </div>
+
+    <div class="photo-wrap">
+      <div class="orbit">
+        <div class="orbit-badge py"><i class="fa-brands fa-python"></i></div>
+        <div class="orbit-badge flask"><i class="fa-solid fa-flask"></i></div>
+        <div class="orbit-badge sql"><i class="fa-solid fa-database"></i></div>
+        <div class="orbit-badge git"><i class="fa-brands fa-git-alt"></i></div>
+      </div>
+      <div class="photo-ring">
+        <img src="{{ url_for('static', filename='profile.png') }}" alt="Kommu Balu">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="container about-grid">
+    <div class="about-card" data-aos>
+      <div class="row-item"><span>Name</span><span>Kommu Balu</span></div>
+      <div class="row-item"><span>Location</span><span>Telangana, India</span></div>
+      <div class="row-item"><span>Email</span><span>kommupawan84@gmail.com</span></div>
+      <div class="row-item"><span>Phone</span><span>+91 8341215548</span></div>
+      <div class="row-item"><span>GitHub</span><span>KommuBalu</span></div>
+      <div class="row-item"><span>Degree</span><span>B.Tech CSE, 2025</span></div>
+    </div>
+    <div>
+      <span class="section-eyebrow">About Me</span>
+      <h2 class="section-title">Turning ideas into secure, working software</h2>
+      <p class="section-sub" style="max-width:100%;">Highly motivated and detail-oriented Computer Science graduate with practical experience in Python full stack development — backend with Flask and FastAPI, frontend with HTML and CSS. I care about building applications that are secure and scalable, with a strong grounding in OOP, REST APIs, and database design. I enjoy solving real-world problems and working in collaborative development environments.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section id="skills" style="background:var(--navy-2);">
+  <div class="container">
+    <span class="section-eyebrow">What I Work With</span>
+    <h2 class="section-title">Skills & Tools</h2>
+    <div class="skills-grid" style="margin-top:36px;">
+      <div class="skill-card">
+        <h4><i class="fa-solid fa-code"></i> Languages</h4>
+        <div class="tag-row"><span class="tag">Python</span><span class="tag">JavaScript (Basics)</span><span class="tag">C</span><span class="tag">C++</span><span class="tag">Java (Basics)</span></div>
+      </div>
+      <div class="skill-card">
+        <h4><i class="fa-solid fa-globe"></i> Web Development</h4>
+        <div class="tag-row"><span class="tag">Flask</span><span class="tag">FastAPI</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Bootstrap</span></div>
+      </div>
+      <div class="skill-card">
+        <h4><i class="fa-solid fa-server"></i> Backend</h4>
+        <div class="tag-row"><span class="tag">REST APIs</span><span class="tag">Routing</span><span class="tag">MVC</span><span class="tag">Authentication</span><span class="tag">Async Programming</span></div>
+      </div>
+      <div class="skill-card">
+        <h4><i class="fa-solid fa-database"></i> Databases</h4>
+        <div class="tag-row"><span class="tag">MySQL</span><span class="tag">SQL Queries</span><span class="tag">ER Diagrams</span></div>
+      </div>
+      <div class="skill-card">
+        <h4><i class="fa-solid fa-toolbox"></i> Tools & Platforms</h4>
+        <div class="tag-row"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">VS Code</span><span class="tag">PyCharm</span><span class="tag">virtualenv</span><span class="tag">Postman</span></div>
+      </div>
+      <div class="skill-card">
+        <h4><i class="fa-solid fa-diagram-project"></i> Core Concepts</h4>
+        <div class="tag-row"><span class="tag">OOP</span><span class="tag">Pydantic</span><span class="tag">Unit Testing</span><span class="tag">SMTP</span><span class="tag">Regex</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects">
+  <div class="container">
+    <span class="section-eyebrow">Selected Work</span>
+    <h2 class="section-title">Projects</h2>
+    <div class="row g-4" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;margin-top:20px;">
+      <div class="project-card">
+        <span class="num">01</span>
+        <h3>Smart Book</h3>
+        <span class="stack">Flask · MySQL · Razorpay · HTML · CSS</span>
+        <ul>
+          <li>Developed a secure full stack web app for online book shopping.</li>
+          <li>Built REST APIs for product management, cart, and order placement.</li>
+          <li>Integrated Razorpay payments and email-based OTP verification via SMTP.</li>
+          <li>Secure login/signup for user and admin roles with session handling.</li>
+          <li>Used SQLAlchemy ORM with modular code design.</li>
+        </ul>
+      </div>
+      <div class="project-card">
+        <span class="num">02</span>
+        <h3>Virtual Voice Assistant</h3>
+        <span class="stack">Python · SpeechRecognition · pyttsx3 · Wikipedia</span>
+        <ul>
+          <li>Built a voice-controlled assistant that responds to spoken commands.</li>
+          <li>Integrated speech_recognition and pyttsx3 for input/output.</li>
+          <li>Automated tasks like opening apps, web searches, and telling time.</li>
+          <li>Used Wikipedia and webbrowser modules for dynamic answers.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EDUCATION / EXPERIENCE ================= -->
+<section id="education" style="background:var(--navy-2);">
+  <div class="container about-grid" style="grid-template-columns:1fr 1fr;">
+    <div>
+      <span class="section-eyebrow">Background</span>
+      <h2 class="section-title">Education</h2>
+      <div class="timeline">
+        <div class="tl-item">
+          <h4>B.Tech, Computer Science Engineering</h4>
+          <div class="org">Wits College, Kakatiya University, Telangana</div>
+          <div class="period">Passed out: 2025 · SGPA 7.75 · CGPA 6.82</div>
+        </div>
+        <div class="tl-item">
+          <h4>Intermediate (MPC)</h4>
+          <div class="org">Govt Junior College, Hanamkonda, Telangana</div>
+          <div class="period">2019 – 2021 · Score: 60%</div>
+        </div>
+        <div class="tl-item">
+          <h4>SSC</h4>
+          <div class="org">Govt High School, Somidi, Telangana</div>
+          <div class="period">2019 · GPA 8.0/10</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <span class="section-eyebrow">Hands-On</span>
+      <h2 class="section-title">Internship</h2>
+      <div class="timeline">
+        <div class="tl-item">
+          <h4>Python Full Stack Developer Intern</h4>
+          <div class="org">Codegann Technologies</div>
+          <div class="period">Training Program</div>
+          <p>Built and tested RESTful APIs using Flask and MySQL, collaborated with the development team on backend logic and frontend UI, and followed agile practices with Git for version control.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CERTIFICATIONS ================= -->
+<section>
+  <div class="container">
+    <span class="section-eyebrow">Continued Learning</span>
+    <h2 class="section-title">Certifications</h2>
+    <div class="cert-grid" style="margin-top:24px;">
+      <div class="cert-card"><i class="fa-brands fa-python"></i><div><h5>Python Programming</h5><span>Great Learning</span></div></div>
+      <div class="cert-card"><i class="fa-solid fa-flask"></i><div><h5>Web Development with Flask</h5><span>Udemy</span></div></div>
+      <div class="cert-card"><i class="fa-solid fa-database"></i><div><h5>Database Management with MySQL</h5><span>SoloLearn</span></div></div>
+      <div class="cert-card"><i class="fa-solid fa-bolt"></i><div><h5>API Development with FastAPI</h5><span>FreeCodeCamp</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" style="background:var(--navy-2);">
+  <div class="container">
+    <span class="section-eyebrow">Get In Touch</span>
+    <h2 class="section-title">Let's Build Something</h2>
+    <div class="contact-grid" style="margin-top:20px;">
+      <div>
+        <div class="contact-item"><i class="fa-solid fa-envelope"></i><div><h6>Email</h6><p>kommupawan84@gmail.com</p></div></div>
+        <div class="contact-item"><i class="fa-solid fa-phone"></i><div><h6>Phone</h6><p>+91 8341215548</p></div></div>
+        <div class="contact-item"><i class="fa-solid fa-location-dot"></i><div><h6>Location</h6><p>Telangana, India</p></div></div>
+        <div class="contact-item"><i class="fa-brands fa-github"></i><div><h6>GitHub</h6><p>github.com/KommuBalu</p></div></div>
+        <div class="contact-item"><i class="fa-brands fa-linkedin"></i><div><h6>LinkedIn</h6><p>linkedin.com/in/balu-kommu-64a810309</p></div></div>
+      </div>
+      <div class="form-panel">
+        <form id="contactForm">
+          <input type="text" class="form-control" placeholder="Your Name" required>
+          <input type="email" class="form-control" placeholder="Your Email" required>
+          <textarea class="form-control" placeholder="Your Message" required></textarea>
+          <button type="submit" class="btn-gold" style="border:none;width:100%;justify-content:center;">Send Message <i class="fa-solid fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container row">
+    <p>&copy; 2026 Kommu Balu. Built with Flask-grade precision.</p>
+    <div class="social-row">
+      <a href="https://github.com/KommuBalu" target="_blank"><i class="fa-brands fa-github"></i></a>
+      <a href="https://linkedin.com/in/balu-kommu-64a810309" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="mailto:kommupawan84@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  const form = document.getElementById('contactForm');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const btn = form.querySelector('button');
+    const original = btn.innerHTML;
+    btn.innerHTML = 'Message Sent <i class="fa-solid fa-check"></i>';
+    form.reset();
+    setTimeout(()=>{ btn.innerHTML = original; }, 2600);
+  });
+</script>
+</body>
+</html>
