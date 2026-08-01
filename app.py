@@ -39,25 +39,6 @@ def login():
     return render_template('login.html')
 
 
-# @app.route('/Aboutme', methods=['GET', 'POST'])
-# def login():
-#     if request.method == 'POST':
-#         username = request.form.get('username')
-#         password = request.form.get('password')
-#         if username == 'pawan' and password == 'Pawan@2025':
-#             # return "welcome %s" % username
-#             return render_template('Aboutme.html', username=username)
-        # else:
-        #     return "Invalid username or password"
-    #     return "Invalid username or password"
-    # return render_template('login.html')
-
-
-# @app.route('/Aboutme',methods=['GEST','POST'])
-# def Aboutme():
-#     if request.method== 'POST':
-#         if Aboutme == Aboutme:
-#             return render_template('Aboutme',username=Aboutme)
 
 if __name__ == '__main__':
     app.run(debug=True)
