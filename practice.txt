@@ -1,4 +1,6 @@
-                    <button class="btn btn-ghost">About me</button>
+
+#this all about practice
+<button class="btn btn-ghost">About me</button>
                     <option value="/Aboutme">Aboutme</option>
 
 
